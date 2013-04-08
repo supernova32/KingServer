@@ -1,0 +1,19 @@
+%h1 Listing study_courses
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @study_courses.each do |study_course|
+    %tr
+      %td= study_course.name
+      %td= link_to 'Show', study_course
+      %td= link_to 'Edit', edit_study_course_path(study_course)
+      %td= link_to 'Destroy', study_course, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Study course', new_study_course_path

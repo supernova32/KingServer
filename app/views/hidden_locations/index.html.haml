@@ -1,0 +1,23 @@
+%h1 Listing hidden_locations
+
+%table
+  %tr
+    %th Name
+    %th Latitude
+    %th Longitude
+    %th
+    %th
+    %th
+
+  - @hidden_locations.each do |hidden_location|
+    %tr
+      %td= hidden_location.name
+      %td= hidden_location.latitude
+      %td= hidden_location.longitude
+      %td= link_to 'Show', hidden_location
+      %td= link_to 'Edit', edit_hidden_location_path(hidden_location)
+      %td= link_to 'Destroy', hidden_location, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Hidden location', new_hidden_location_path

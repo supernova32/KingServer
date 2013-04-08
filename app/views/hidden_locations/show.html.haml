@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @hidden_location.name
+%p
+  %b Latitude:
+  = @hidden_location.latitude
+%p
+  %b Longitude:
+  = @hidden_location.longitude
+
+= link_to 'Edit', edit_hidden_location_path(@hidden_location)
+\|
+= link_to 'Back', hidden_locations_path

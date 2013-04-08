@@ -1,7 +1,21 @@
 KingServer::Application.routes.draw do
+  resources :hidden_locations
+
+
+  resources :buildings
+
+
+  resources :study_courses
+
+
+  resources :rooms
+
+
   devise_for :users
 
   resources :users
+
+  root to: 'study_courses#home'
 
 
   # The priority is based upon order of creation:
