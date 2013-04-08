@@ -1,0 +1,16 @@
+%legend= title t("global.lost")
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: "form-horizontal", method: :post }) do |f|
+  = devise_error_messages!
+  .control-group
+    = f.label :email, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-envelope"}
+        = f.email_field :email
+  .control-group
+    .controls
+      = f.submit t("global.found"), class: "btn btn-info"
+.control-group
+  .controls
+    = render "devise/shared/links"

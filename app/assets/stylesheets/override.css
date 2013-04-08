@@ -1,0 +1,413 @@
+/*IMPORT EXTERNAL CSS*/
+/*@import url(https://fonts.googleapis.com/css?family=Droid+Sans|Carrois+Gothic|Lobster);*/
+.myTitle {
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    font-size: 75px;
+    padding: 20px;
+    padding-top: 40px;
+}
+.subTitle {
+    font-family: 'Droid Sans', sans-serif;
+    /*font-family: 'Carrois Gothic', sans-serif;*/
+    font-size: 25px;
+    padding: 10px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+.logo {
+    font-family: 'Lobster', cursive;
+    font-weight: lighter;
+    /*font-family: 'Droid Sans', sans-serif;*/
+}
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    padding-top: 60px;
+    /*color: #5a5a5a;*/
+    /*background-color: rgba(0, 0, 0, 0.02); /* #F3F3F3;*/
+}
+
+.hero-unit{
+    padding-top: 40px;
+    /*background: url('../../../img/background.png');*/
+    /*background-color: #ccc;*/
+}
+
+.navbar-inverse .navbar-inner {
+    /*background-color: #252525;*/
+    /*background-image: none !important;*/
+    /*color: #999999;*/
+}
+
+/* Sticky footer styles
+      -------------------------------------------------- */
+
+html,
+body {
+    height: 90%;
+    /*background: url('../../../img/background.png');*/
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -85px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+.footer {
+    height: 160px;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+    .footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.footer {
+    /*position: absolute;*/
+    /*width: 100%;*/
+    background-color: #777777;
+    color: #F8F8F8;
+    padding: 40px 0;
+    min-width: 1100px;
+}
+
+.footer a:hover {
+    text-decoration: blink;
+    color: #000000;
+}
+
+.footer a:link a:visited{
+    color: #F8F8F8;
+}
+.footer a{
+    color: #F8F8F8;
+}
+
+.ticketheader {
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #666;
+    color: #fff;
+    font-weight: bold;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.ticketmsg {
+    margin: 0 10px;
+    padding: 10px 15px;
+    min-height: 100px;
+    border: 1px solid #ccc;
+    border-top: 0;
+    /*border-bottom: 0;*/
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    height: 300px;
+    padding-bottom: 0;
+}
+
+.carousel .container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.slideControl a:hover {
+    color: #000000;
+}
+
+.carousel-control {
+    background-color: transparent;
+    color: #000000;
+    border: 0;
+    font-size: 80px;
+    margin-top: 0;
+}
+
+.carousel .item {
+    height: 300px;
+    padding-top: 80px;
+}
+
+.carousel-inner{
+    height: 300px;
+}
+
+.carousel-caption {
+    background-color: transparent;
+    position: static;
+    max-width: 550px;
+    padding: 0 20px;
+    padding-left: 76px;
+    margin-bottom: 100px;
+    text-align: justify;
+}
+.carousel-caption h1,
+.carousel-caption .lead {
+    margin: 0;
+    line-height: 1.25;
+    color: #000000;
+}
+.carousel-caption .btn {
+    margin-top: 10px;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .span4 {
+    text-align: center;
+}
+.marketing h2 {
+    font-weight: normal;
+}
+.marketing .span4 p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+    margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+.featurette {
+    padding-top: 55px; /* Vertically center images part 1: add padding above and below text. */
+    overflow: hidden; /* Vertically center images part 2: clear their floats. */
+}
+.featurette-image {
+    margin-top: -50px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+}
+
+/* Give some space on the sides of the floated elements so text doesn't run right into it. */
+.featurette-image.pull-left {
+    margin-right: 40px;
+}
+.featurette-image.pull-right {
+    margin-left: 40px;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (max-width: 979px) {
+
+    .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+    }
+    .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+    }
+
+    .carousel .item {
+        height: 500px;
+    }
+    .carousel img {
+        width: auto;
+        height: 500px;
+    }
+
+    .featurette {
+        height: auto;
+        padding: 0;
+    }
+    .featurette-image.pull-left,
+    .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .navbar-inner {
+        margin: -20px;
+    }
+
+    .carousel {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+    .carousel .container {
+
+    }
+    .carousel .item {
+        height: 300px;
+    }
+    .carousel img {
+        height: 300px;
+    }
+    .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-bottom: 40px;
+    }
+    .carousel-caption h1 {
+        font-size: 30px;
+    }
+    .carousel-caption .lead,
+    .carousel-caption .btn {
+        font-size: 18px;
+    }
+
+    .marketing .span4 + .span4 {
+        margin-top: 40px;
+    }
+
+    .featurette-heading {
+        font-size: 30px;
+    }
+    .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+}
+
+
+/* Custom container */
+.container-narrow {
+    margin: 0 auto;
+    max-width: 700px;
+}
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    margin: 60px 0;
+    text-align: center;
+}
+.jumbotron h1 {
+    font-size: 55px;
+    line-height: 1;
+}
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+    margin: 20px 0;
+}
+.marketing p + h4 {
+    margin-top: 28px;
+}
+
+.field_with_errors {
+    display: inline;
+    color: red;
+}
+
+.cubic {
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*z-index: 1010;*/
+    width: 203px;
+    margin-right: 12px;
+    padding: 1px;
+    background-color: #fff;
+    /*border: 1px solid #ccc;*/
+    border: 1px solid rgba(0,0,0,0.2);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+div.myBlock{
+    display:block;
+    float:left;
+    clear:both;
+}
+
+.form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.footer-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.white-panel {
+    background-color: #fff;
+    border: 1px solid #dadada;
+    padding: 0px;
+    margin-bottom: 40px;
+    color: #333;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.075);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .075);
+}
