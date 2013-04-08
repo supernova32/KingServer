@@ -1,19 +1,33 @@
-= form_for @building do |f|
+= form_for @building, html: {class: "form-horizontal"} do |f|
   - if @building.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@building.errors.count, "error")} prohibited this building from being saved:"
-      %ul
-        - @building.errors.full_messages.each do |msg|
-          %li= msg
+    .container
+      .alert.alert-danger
+        %h2= "#{pluralize(@building.errors.count, "error")} prohibited this building from being saved:"
+        %ul
+          - @building.errors.full_messages.each do |msg|
+            %li= msg
 
-  .field
+  .control-group
     = f.label :name
-    = f.text_field :name
-  .field
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-arrow-right"}
+        = f.text_field :name
+  .control-group
     = f.label :latitude
-    = f.text_field :latitude
-  .field
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-arrow-right"}
+        = f.text_field :latitude
+  .control-group
     = f.label :longitude
-    = f.text_field :longitude
-  .actions
-    = f.submit 'Save'
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-arrow-right"}
+        = f.text_field :longitude
+  .control-group
+    .controls
+      = f.submit 'Save'

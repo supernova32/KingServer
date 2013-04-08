@@ -1,11 +1,10 @@
-%p#notice= notice
 
 %p
   %b Name:
   = @user.name
 %p
   %b Studies:
-  = @user.studies
+  = @user.study_course.name
 
 = link_to 'Edit', edit_user_path(@user)
 \|

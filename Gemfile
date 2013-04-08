@@ -13,6 +13,8 @@ gem 'newrelic_rpm'
 gem 'dalli'
 gem 'chronic', :git => 'git@github.com:mojombo/chronic.git' #support for ruby 2.0
 gem 'whenever', :require => false
+gem 'metamagic'
+gem 'headliner'
 
 group :production do
   gem 'mysql2'

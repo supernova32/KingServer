@@ -1,2 +1,4 @@
 de:
   hello: Hallo Welt
+  global:
+    access_error: "Zugang verweigert!"

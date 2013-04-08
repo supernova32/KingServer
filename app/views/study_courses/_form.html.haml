@@ -1,13 +1,20 @@
-= form_for @study_course do |f|
+= form_for @study_course, html: {class: "form-horizontal"} do |f|
   - if @study_course.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@study_course.errors.count, "error")} prohibited this study_course from being saved:"
-      %ul
-        - @study_course.errors.full_messages.each do |msg|
-          %li= msg
+    .container
+      .alert.alert-danger
+        %h2= "#{pluralize(@study_course.errors.count, "error")} prohibited this study_course from being saved:"
+        %ul
+          - @study_course.errors.full_messages.each do |msg|
+            %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions
-    = f.submit 'Save'
+  .control-group
+    .controls
+      = f.label :name
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-arrow-right"}
+        = f.text_field :name
+  .control-group
+    .controls
+      = f.submit 'Save', class: 'btn'

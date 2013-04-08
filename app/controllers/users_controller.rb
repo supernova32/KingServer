@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
+
   # GET /users
   # GET /users.json
   def index
@@ -40,6 +42,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    id = params[:user][:study_course]
+    params[:user][:study_course] = StudyCourse.find(id)
     @user = User.new(params[:user])
 
     respond_to do |format|

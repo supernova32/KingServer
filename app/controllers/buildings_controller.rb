@@ -1,4 +1,5 @@
 class BuildingsController < ApplicationController
+  load_and_authorize_resource
   # GET /buildings
   # GET /buildings.json
   def index

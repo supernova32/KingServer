@@ -1,21 +1,25 @@
 KingServer::Application.routes.draw do
-  resources :hidden_locations
+  scope '(:locale)' do
+    resources :hidden_locations
 
 
-  resources :buildings
+    resources :buildings
 
 
-  resources :study_courses
+    resources :study_courses
 
 
-  resources :rooms
+    resources :rooms
 
 
-  devise_for :users
+    devise_for :users
 
-  resources :users
+    resources :users
 
-  root to: 'study_courses#home'
+    root to: 'study_courses#home'
+
+  end
+
 
 
   # The priority is based upon order of creation:

@@ -1,20 +1,21 @@
-%h1 Listing users
+%legend All users
 
-%table
-  %tr
-    %th Name
-    %th Studies
-    %th
-    %th
-    %th
+%table{class: 'table table-hover'}
+  %thead
+    %tr
+      %th Name
+      %th Studies
+      %th
+      %th
+      %th
 
   - @users.each do |user|
     %tr
       %td= user.name
-      %td= user.studies
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= user.study_course.name unless user.study_course.nil?
+      %td= link_to 'Show', user, class: 'btn btn-small'
+      %td= link_to 'Edit', edit_user_path(user), class: 'btn btn-small btn-warning'
+      %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-small btn-danger'
 
 %br
 
