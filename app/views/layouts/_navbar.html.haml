@@ -45,14 +45,6 @@
                     %b{class:"caret"}
                   %ul{class:"dropdown-menu"}
                     %li
-                      = link_to "#{root_url}/orders" do
-                        %i{class:"icon-tags"}
-                        = t('layouts.navbar.orders')
-                    %li
-                      %a{href: "#{root_url}/my_invoices"}
-                        %i{class: "icon-book"}
-                        = t("layouts.navbar.invoices")
-                    %li
                       %a{href: "#{root_url}/tickets"}
                         %i{class: "icon-envelope"}
                         = t("layouts.navbar.tickets")
@@ -63,14 +55,6 @@
                         =link_to "/admin" do
                           %i{class: "icon-cogs"}
                           Admin Area
-                    %li
-                      %a{href: "#{root_url}/services"}
-                        %i{class: "icon-tasks"}
-                        = t('layouts.navbar.services')
-                    %li
-                      %a{href: "#{root_url}/notifications"}
-                        %i{class: "icon-external-link"}
-                        =t("notification.link")
                     %li
                       = link_to edit_user_registration_path do
                         %i{class: "icon-user"}
