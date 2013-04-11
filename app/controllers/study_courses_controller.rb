@@ -4,7 +4,12 @@ class StudyCoursesController < ApplicationController
   def home
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @study_courses }
+    end
+  end
+
+  def admin_home
+    respond_to do |format|
+      format.html # index.html.erb
     end
   end
   # GET /study_courses

@@ -4,8 +4,7 @@
   = @user.name
 %p
   %b Studies:
-  = @user.study_course.name
+  = @user.study_course.name unless @user.study_course.nil?
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+= link_to 'Edit', edit_user_path(@user), class: 'btn'
+= link_to 'Back', users_path, class: 'btn btn-inverse'

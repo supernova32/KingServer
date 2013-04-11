@@ -11,30 +11,16 @@
             .logo
               King of the HFT
           .nav-collapse.collapse
-            %ul{class:"nav"}
-              %li{class:"dropdown"}
-                %a{href:"#", class:"dropdown-toggle", "data-toggle"=>"dropdown"}
-                  = t('layouts.navbar.products')
-                  %b{class:"caret"}
-                %ul{class:"dropdown-menu"}
-                  %li
-                    = link_to root_url+"/items" do
-                      %i{class:"icon-asterisk"}
-                      = t('layouts.navbar.all_products')
-                  %li
-                    = link_to root_url+"/categories/seedbox" do
-                      %i{class:"icon-hdd"}
-                      = t("items.home.seedbox_title")
-                  %li
-                    = link_to root_url+"/categories/vpn" do
-                      %i{class:"icon-lock"}
-                      = t("items.home.vpn_title")
-                  %li
-                    = link_to root_url+"/categories/server" do
-                      %i{class:"icon-fire"}
-                      = t("items.home.server_title")
-              %li
-                = link_to t('layouts.navbar.cart'), root_url+"/my_cart"
+            -#%ul{class:"nav"}
+            -#  %li{class:"dropdown"}
+            -#    %a{href:"#", class:"dropdown-toggle", "data-toggle"=>"dropdown"}
+            -#      = t('layouts.navbar.products')
+            -#      %b{class:"caret"}
+            -#    %ul{class:"dropdown-menu"}
+            -#      %li
+            -#        = link_to root_url+"/items" do
+            -#          %i{class:"icon-asterisk"}
+            -#          = t('layouts.navbar.all_products')
 
             %ul{class: "nav pull-right"}
               -if user_signed_in?
@@ -45,19 +31,19 @@
                     %b{class:"caret"}
                   %ul{class:"dropdown-menu"}
                     %li
-                      %a{href: "#{root_url}/tickets"}
-                        %i{class: "icon-envelope"}
-                        = t("layouts.navbar.tickets")
+                      =link_to user_path(current_user) do
+                        %i{class: "icon-user"}
+                        = t("layouts.navbar.me")
                     %li{class:"divider"}
                     %li{class:"nav-header"}= t('layouts.navbar.manage')
                     -if current_user.admin?
                       %li
-                        =link_to "/admin" do
+                        =link_to admin_path do
                           %i{class: "icon-cogs"}
                           Admin Area
                     %li
                       = link_to edit_user_registration_path do
-                        %i{class: "icon-user"}
+                        %i{class: "icon-pencil"}
                         = t('layouts.navbar.user_details')
                     %li
                       = link_to destroy_user_session_path, method: :delete do

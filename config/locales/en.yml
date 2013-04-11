@@ -2,9 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  admin:
+    title: Administrator Home
   study_courses:
+    new: New Study Course
     title: Study Courses
-    description: Showing all available courses of studies at the Hochschule für Technik Stuttgart
+    description: Showing all available courses of study at the Hochschule für Technik Stuttgart
 
   global:
     sign_in: Sign in
@@ -16,6 +19,8 @@ en:
     update: Update
   layouts:
     navbar:
+      user_details: Edit Profile
+      me: My Profile
       login: Login
       password: Password
 
