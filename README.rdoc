@@ -3,7 +3,10 @@
 Rails Powered Server to manage the user and rooms database, provide a nice WebUI and forward data to an Android App.
 The purpose of this server is to be the central command for a King of the Hill based game.
 Students of the Hochschule für Technik Stuttgart will use the Android App in conjuction with this server to
-check in to hidden places inside the campus.
+check in to hidden places inside the campus. (First version. We plan to expand this to a global scale after the
+first beta tests)
+
+== Beta phase
 
 Once a majority of students of the same course of studies check into that location, that location becomes theirs.
 Once the majority of locations in the vecinity of a building belong to a single course, the building becomes theirs.
@@ -15,6 +18,6 @@ The location of the hidden areas can change randomly.
 == Getting Started
 
 * Create an account with our server (URL to be determined)
-* Download the KingApp (Soon on Github)
+* Download the KingApp
 * Login in inside the app and start looking for the hidden locations
 

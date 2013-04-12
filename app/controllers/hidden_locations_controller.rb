@@ -1,4 +1,6 @@
 class HiddenLocationsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /hidden_locations
   # GET /hidden_locations.json
   def index
