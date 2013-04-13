@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20130408194507) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "authentication_token"
     t.boolean  "admin"
     t.integer  "study_course_id"
   end
