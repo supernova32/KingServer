@@ -17,6 +17,7 @@ en:
     access_error: Access denied!
     register: Register
     update: Update
+    save: Save
   layouts:
     navbar:
       user_details: Edit Profile

@@ -7,17 +7,20 @@
           - @room.errors.full_messages.each do |msg|
             %li= msg
 
-  .field
-    = f.label :building
-    = f.number_field :building
-  .field
-    = f.label :number
-    = f.number_field :number
-  .field
-    = f.label :claimed
-    = f.check_box :claimed
-  .field
-    = f.label :claimed_by
-    = f.text_field :claimed_by
-  .actions
-    = f.submit 'Save'
+  .control-group
+    = f.label :building_id, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-user"}
+        = f.select :building_id, Hash[Building.all.map{|b| [b.name, b.id]}]
+  .control-group
+    = f.label :number, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-user"}
+        = f.text_field :number
+  .control-group
+    .controls
+      = f.submit t("global.save"), class: "btn btn-success"

@@ -15,6 +15,7 @@ gem 'chronic', :git => 'git@github.com:mojombo/chronic.git' #support for ruby 2.
 gem 'whenever', :require => false
 gem 'metamagic'
 gem 'headliner'
+gem 'qr4r'
 
 group :production do
   gem 'mysql2'

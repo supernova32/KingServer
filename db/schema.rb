@@ -44,12 +44,14 @@ ActiveRecord::Schema.define(:version => 20130408194507) do
   end
 
   create_table "rooms", :force => true do |t|
-    t.integer  "building"
+    t.integer  "building_id"
     t.integer  "number"
-    t.boolean  "claimed",    :default => false
+    t.boolean  "claimed",      :default => false
     t.string   "claimed_by"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.text     "id_hash"
+    t.string   "qr_code_path"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "study_courses", :force => true do |t|

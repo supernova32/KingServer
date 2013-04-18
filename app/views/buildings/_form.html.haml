@@ -8,21 +8,21 @@
             %li= msg
 
   .control-group
-    = f.label :name
+    = f.label :name, class: "control-label"
     .controls
       .input-prepend
         %span{class: "add-on"}
           %i{class: "icon-arrow-right"}
         = f.text_field :name
   .control-group
-    = f.label :latitude
+    = f.label :latitude, class: "control-label"
     .controls
       .input-prepend
         %span{class: "add-on"}
           %i{class: "icon-arrow-right"}
         = f.text_field :latitude
   .control-group
-    = f.label :longitude
+    = f.label :longitude, class: "control-label"
     .controls
       .input-prepend
         %span{class: "add-on"}
@@ -30,4 +30,4 @@
         = f.text_field :longitude
   .control-group
     .controls
-      = f.submit 'Save'
+      = f.submit t('global.save'), class: 'btn btn-success'
