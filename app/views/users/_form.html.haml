@@ -1,16 +1,33 @@
-= form_for @user do |f|
+= form_for @user, html: {class: "form-horizontal"} do |f|
   - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+    .container
+      .alert.alert-danger
+        %h5= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :studies
-    = f.text_field :studies
-  .actions
-    = f.submit 'Save'
+  .control-group
+    = f.label :name, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-arrow-right"}
+        = f.text_field :name
+  .control-group
+    = f.label :email, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-envelope"}
+        = f.email_field :email
+  .control-group
+    = f.label :study_course, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-user"}
+        = f.select :study_course_id, Hash[StudyCourse.all.map{|course| [course.name, course.id]}]
+  .control-group
+    .controls
+      = f.submit t("global.save"), class: "btn btn-primary"

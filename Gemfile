@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,6 +16,7 @@ gem 'whenever', :require => false
 gem 'metamagic'
 gem 'headliner'
 gem 'qr4r'
+gem 'geo-distance'
 
 group :production do
   gem 'mysql2'

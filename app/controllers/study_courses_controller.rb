@@ -1,4 +1,5 @@
 class StudyCoursesController < ApplicationController
+  before_filter :authenticate_user!, except: :home
   load_and_authorize_resource
 
   def home

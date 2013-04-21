@@ -9,7 +9,7 @@ class Ability
     else
       can :read, [StudyCourse, Room, HiddenLocation, Building]
       can :home, StudyCourse
-      can :manage, User, id: user.id
+      #can :manage, User, id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -1,18 +1,22 @@
-%p#notice= notice
+%legend Showing stats for room #{@room.building_id}/#{@room.number}
 
-%p
-  %b Building:
-  = @room.building
-%p
-  %b Number:
-  = @room.number
 %p
   %b Claimed:
   = @room.claimed
 %p
   %b Claimed by:
   = @room.claimed_by
+%p
+  %b Number of users checked in:
+  = @room.users.size
 
-= link_to 'Edit', edit_room_path(@room)
-\|
-= link_to 'Back', rooms_path
+%p
+  %b Hash
+  = @room.id_hash
+
+%p
+  %img{src: "/img/#{@room.qr_code_path}", width: '40%'}
+
+
+= link_to 'Edit', edit_room_path(@room), class: 'btn btn-warning'
+= link_to 'Back', rooms_path, class: 'btn btn-inverse'

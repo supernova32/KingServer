@@ -1,19 +1,19 @@
 KingServer::Application.routes.draw do
+
+  namespace :api do
+    namespace :v1  do
+      resources :tokens, only: [:create, :destroy]
+      post '/check_in' => 'check_in_rooms#check_in', format: :json
+      post '/user_info' => 'users#my_info', format: :json
+    end
+  end
+
   scope '(:locale)' do
     resources :hidden_locations
-
-
     resources :buildings
-
-
     resources :study_courses
-
-
     resources :rooms
-
-
     devise_for :users
-
     resources :users
 
     get '/admin' => 'study_courses#admin_home', as: 'admin'
