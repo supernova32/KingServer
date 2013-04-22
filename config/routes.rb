@@ -5,6 +5,7 @@ KingServer::Application.routes.draw do
       resources :tokens, only: [:create, :destroy]
       post '/check_in' => 'check_in_rooms#check_in', format: :json
       post '/user_info' => 'users#my_info', format: :json
+      post '/room_info' => 'check_in_rooms#get_room_info', format: :json
     end
   end
 

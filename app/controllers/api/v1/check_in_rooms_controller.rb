@@ -25,4 +25,9 @@ class Api::V1::CheckInRoomsController < ApplicationController
       render status: 401, json: { message: 'Distance error'}
     end
   end
+
+  def get_room_info
+    @room = Room.find_by_id_hash(params[:room_hash])
+    render status: 200, json: @room
+  end
 end

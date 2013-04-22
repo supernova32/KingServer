@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 informatik = StudyCourse.create [name: 'Informatik']
+bau_1 = Building.create [name: 'My Home', latitude: 48.7663727, longitude: 9.1780033]
 
-admin = User.create [name: "Patricio Cano", email: 'pato.cano@me.com', password: 'adminPassword',
+admin = User.create [name: 'Patricio Cano', email: 'pato.cano@me.com', password: 'adminPassword',
                      password_confirmation: 'adminPassword', admin: true, study_course_id: 1]
