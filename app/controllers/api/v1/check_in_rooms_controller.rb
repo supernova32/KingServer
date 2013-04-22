@@ -12,7 +12,7 @@ class Api::V1::CheckInRoomsController < ApplicationController
 
   def check_in
     @room = Room.find_by_id_hash(params[:room_hash])
-    @distance = GeoDistance::Haversine.geo_distance(params[:latitude], params[:longitude], @room.building.latitude, @room.building.longitude).to_meters
+    @distance = GeoDistance::Haversine.geo_distance(params[:latitude], params[:longitude], @room.building.latitude.to_f, @room.building.longitude.to_f).to_meters
     if @distance < 100
       if current_user.rooms.include? @room
         render status: 401, json: { message: 'Duplicate'}
