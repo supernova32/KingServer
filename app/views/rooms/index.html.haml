@@ -1,25 +1,23 @@
-%h1 Listing rooms
+%legend Listing rooms
 
-%table
-  %tr
-    %th Building
-    %th Number
-    %th Claimed
-    %th Claimed by
-    %th
-    %th
-    %th
+%table{class: 'table table-hover'}
+  %thead
+    %tr
+      %th Building
+      %th Number
+      %th Claimed
+      %th Claimed by
 
   - @rooms.each do |room|
     %tr
-      %td= room.building
+      %td= room.building.name
       %td= room.number
       %td= room.claimed
       %td= room.claimed_by
-      %td= link_to 'Show', room
-      %td= link_to 'Edit', edit_room_path(room)
-      %td= link_to 'Destroy', room, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Show', room, class: 'btn btn-small'
+      %td= link_to 'Edit', edit_room_path(room), class: 'btn btn-small btn-warning'
+      %td= link_to 'Destroy', room, method: :delete, data: { :confirm => 'Are you sure?' }, class: 'btn btn-small btn-danger'
 
 %br
 
-= link_to 'New Room', new_room_path
+= link_to 'New Room', new_room_path, class: 'btn btn-primary'
