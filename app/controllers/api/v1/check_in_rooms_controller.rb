@@ -27,8 +27,19 @@ class Api::V1::CheckInRoomsController < ApplicationController
   end
 
   def get_room_info
-    @room = Room.find_by_id_hash(params[:room_hash])
-    render status: 200, json: @room
+    room = Room.find_by_id_hash(params[:room_hash])
+    studies = []
+    users = room.users
+    users.each do |user|
+      studies << user.studies
+    end
+
+    stats = Hash.new(0)
+    studies.each do |st|
+      stats[st] += 1
+    end
+
+    render status: 200, json: { users: users.size, stats: stats, room: room }
   end
 
   def hidden_check_in

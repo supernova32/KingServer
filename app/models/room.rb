@@ -7,7 +7,7 @@ class Room < ActiveRecord::Base
   has_many :users, through: :locations
   belongs_to :building
 
-  QR_PATH = '/home/www-data/KingApp/shared/qr_codes/'
+  QR_PATH = '/Users/pato/RubyMineProjects/KingServer/public/qr_codes/'#'/home/www-data/KingApp/shared/qr_codes/'
 
   before_save do
     self.id_hash = Digest::SHA1.hexdigest("#{self.id}#{self.created_at}#{self.number}#{self.building_id}")
