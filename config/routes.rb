@@ -6,6 +6,8 @@ KingServer::Application.routes.draw do
       post '/check_in' => 'check_in_rooms#check_in', format: :json
       post '/user_info' => 'users#my_info', format: :json
       post '/room_info' => 'check_in_rooms#get_room_info', format: :json
+      post '/hidden_check' => 'check_in_rooms#hidden_check_in', format: :json
+      post '/hidden_locations' => 'check_in_rooms#get_hidden_locations', format: :json
     end
   end
 

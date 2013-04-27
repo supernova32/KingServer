@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
   respond_to :json
 
   def my_info
-    render json: {user: current_user, rooms: current_user.rooms}
+    render json: {user: current_user, rooms: current_user.rooms, locations: current_user.hidden_locations}
   end
 
 end
