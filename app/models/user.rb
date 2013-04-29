@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   before_save do
     self.studies = self.study_course.name
   end
+
+  def as_json(options)
+    super(except: [:id, :created_at, :updated_at, :study_course_id, :admin])
+  end
 end

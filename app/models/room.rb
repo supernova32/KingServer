@@ -14,4 +14,8 @@ class Room < ActiveRecord::Base
     self.qr_code_path = "#{self.building_id}_#{self.number}.png"
     Qr4r::encode(self.id_hash, QR_PATH+self.qr_code_path, pixel_size: 30)
   end
+
+  def as_json(options)
+    super(except: [:qr_code_path, :created_at, :updated_at, :id])
+  end
 end
