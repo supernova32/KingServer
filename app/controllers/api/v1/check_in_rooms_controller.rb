@@ -11,35 +11,54 @@ class Api::V1::CheckInRoomsController < ApplicationController
   end
 
   def check_in
-    @room = Room.find_by_id_hash(params[:room_hash])
-    @distance = GeoDistance::Haversine.geo_distance(params[:latitude], params[:longitude], @room.building.latitude.to_f, @room.building.longitude.to_f).to_meters
-    if @distance < 100
-      if current_user.rooms.include? @room
-        render status: 401, json: { message: 'Duplicate' }
-      else
-        current_user.rooms << @room
-        current_user.save!
-        render status: 200, json: { message: 'OK' }
+    begin
+      @room = Room.find_by_id_hash(params[:room_hash])
+      unless @room.nil?
+        @distance = GeoDistance::Haversine.geo_distance(params[:latitude], params[:longitude], @room.building.latitude.to_f, @room.building.longitude.to_f).to_meters
+        if @distance < 100
+          if current_user.rooms.include? @room
+            render status: 401, json: { message: 'Duplicate' }
+          else
+            current_user.rooms << @room
+            current_user.save!
+            render status: 200, json: { message: 'OK' }
+          end
+        else
+          render status: 401, json: { message: 'Distance error' }
+        end
       end
-    else
-      render status: 401, json: { message: 'Distance error' }
+      render status: 500, json: { message: 'Record not found' }
+
+    rescue ActiveRecord::RecordNotFound
+      render status: 500, json: { message: 'Record not found' }
+      return
     end
   end
 
   def get_room_info
-    room = Room.find_by_id_hash(params[:room_hash])
-    studies = []
-    users = room.users
-    users.each do |user|
-      studies << user.studies
-    end
+    begin
+      room = Room.find_by_id_hash(params[:room_hash])
+      unless room.nil?
+        studies = []
+        users = room.users
+        users.each do |user|
+          studies << user.studies
+        end
 
-    stats = Hash.new(0)
-    studies.each do |st|
-      stats[st] += 1
-    end
+        stats = Hash.new(0)
+        studies.each do |st|
+          stats[st] += 1
+        end
 
-    render status: 200, json: { users: users.size, stats: stats, room: room }
+        render status: 200, json: { users: users.size, stats: stats, room: room }
+        return
+      end
+      render status: 500, json: { message: 'Record not found' }
+
+    rescue ActiveRecord::RecordNotFound
+      render status: 500, json: { message: 'Record not found' }
+      return
+    end
   end
 
   def hidden_check_in
