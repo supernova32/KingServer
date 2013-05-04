@@ -67,7 +67,7 @@ class Api::V1::CheckInRoomsController < ApplicationController
 
   def get_close_locations
     @locations = HiddenLocation.near([params[:latitude], params[:longitude]], 0.5, units: :km)
-    render status: 200, json: @locations
+    render status: 200, json: { markers: @locations }
   end
 
   def get_hidden_locations
