@@ -17,6 +17,7 @@ gem 'metamagic'
 gem 'headliner'
 gem 'qr4r'
 gem 'geo-distance'
+gem 'geocoder'
 
 group :production do
   gem 'mysql2'

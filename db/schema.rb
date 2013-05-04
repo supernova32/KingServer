@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408194507) do
+ActiveRecord::Schema.define(:version => 20130504155140) do
 
   create_table "buildings", :force => true do |t|
     t.string   "name"
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(:version => 20130408194507) do
 
   create_table "hidden_locations", :force => true do |t|
     t.string   "name"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.decimal  "latitude",   :precision => 10, :scale => 7
+    t.decimal  "longitude",  :precision => 10, :scale => 7
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "locations", :force => true do |t|

@@ -108,6 +108,7 @@ GEM
       geo_units (~> 0.2.1)
     geo_units (0.2.4.1)
       sugar-high (~> 0.4.6.2)
+    geocoder (1.1.8)
     haml (4.0.2)
       tilt
     haml-rails (0.4)
@@ -270,6 +271,7 @@ DEPENDENCIES
   factory_girl_rails
   formtastic-bootstrap
   geo-distance
+  geocoder
   haml-rails
   headliner
   hpricot

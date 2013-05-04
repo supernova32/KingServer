@@ -65,6 +65,11 @@ class Api::V1::CheckInRoomsController < ApplicationController
     @location = HiddenLocation.where('latitude = ? AND longitude = ?', params[:latitude], params[:longitude])
   end
 
+  def get_close_locations
+    @locations = HiddenLocation.near([params[:latitude], params[:longitude]], 0.5, units: :km)
+    render status: 200, json: @locations
+  end
+
   def get_hidden_locations
     @locations = HiddenLocation.all
     render status: 200, json: @locations
