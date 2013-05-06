@@ -61,8 +61,45 @@ class Api::V1::CheckInRoomsController < ApplicationController
     end
   end
 
+  def get_location_info
+    begin
+      room = HiddenLocation.find(params[:location_id])
+      unless room.nil?
+        studies = []
+        users = room.users
+        users.each do |user|
+          studies << user.studies
+        end
+
+        stats = Hash.new(0)
+        studies.each do |st|
+          stats[st] += 1
+        end
+
+        render status: 200, json: { users: users.size, stats: stats }
+        return
+      end
+      render status: 500, json: { message: 'Record not found' }
+
+    rescue ActiveRecord::RecordNotFound
+      render status: 500, json: { message: 'Record not found' }
+      return
+    end
+  end
+
   def hidden_check_in
-    @location = HiddenLocation.where('latitude = ? AND longitude = ?', params[:latitude], params[:longitude])
+    @locations = HiddenLocation.near([params[:latitude], params[:longitude]], 0.015, units: :km)
+    if @locations.size == 1
+      if current_user.rooms.include? @locations
+        render status: 401, json: { message: 'Duplicate' }
+      else
+        current_user.hidden_locations << @locations.first
+        current_user.save!
+        render status: 200, json: { message: 'OK', location: @locations.first }
+      end
+    else
+      render status: 401, json: { message: 'Distance error' }
+    end
   end
 
   def get_close_locations
