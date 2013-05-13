@@ -28,6 +28,7 @@ class Api::V1::CheckInRoomsController < ApplicationController
         end
       end
       render status: 500, json: { message: 'Record not found' }
+      return
 
     rescue ActiveRecord::RecordNotFound
       render status: 500, json: { message: 'Record not found' }
