@@ -18,13 +18,16 @@ class Api::V1::CheckInRoomsController < ApplicationController
         if @distance < 100
           if current_user.rooms.include? @room
             render status: 401, json: { message: 'Duplicate' }
+            return
           else
             current_user.rooms << @room
             current_user.save!
             render status: 200, json: { message: 'OK' }
+            return
           end
         else
           render status: 401, json: { message: 'Distance error' }
+          return
         end
       end
       render status: 500, json: { message: 'Record not found' }
