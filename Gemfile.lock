@@ -181,6 +181,7 @@ GEM
     require_all (1.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rmagick (2.13.2)
     rqrcode (0.4.2)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
@@ -280,6 +281,7 @@ DEPENDENCIES
   pg
   qr4r
   rails
+  rmagick
   rspec-rails
   ruby_parser
   rvm-capistrano
