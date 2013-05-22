@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20130522145837) do
 
   create_table "rooms", :force => true do |t|
     t.integer  "building_id"
-    t.integer  "number"
+    t.string   "number"
     t.boolean  "claimed",      :default => false
     t.string   "claimed_by"
     t.text     "id_hash"

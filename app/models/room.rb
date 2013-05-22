@@ -1,5 +1,5 @@
 require 'digest/sha1'
-require 'RMagick'
+require 'rqrcode_png'
 
 class Room < ActiveRecord::Base
   attr_accessible :building_id, :claimed, :claimed_by, :number, :qr_code_path
@@ -8,15 +8,12 @@ class Room < ActiveRecord::Base
   has_many :users, through: :locations
   belongs_to :building
 
-  QR_PATH = "#{Rails.root}/tmp/"
-
   before_save do
-    self.id_hash = Digest::SHA1.hexdigest("#{self.id}#{self.created_at}#{self.number}#{self.building_id}")
+    self.id_hash = Digest::SHA1.hexdigest("#{self.created_at}#{self.number}#{self.building_id}")
     self.qr_code_path = "#{self.building_id}_#{self.number}.png"
-    Qr4r::encode(self.id_hash, QR_PATH+self.qr_code_path, pixel_size: 30)
-    file = File.open(QR_PATH+self.qr_code_path, 'rb')
-    self.qr_data = file.read
-    file.close
+    qr = RQRCode::QRCode.new(self.id_hash, size: 4, level: :m)
+    png = qr.to_img
+    self.qr_data = png.resize(400, 400).to_s
   end
 
   def as_json(options)
