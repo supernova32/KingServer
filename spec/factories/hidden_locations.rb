@@ -2,8 +2,10 @@
 
 FactoryGirl.define do
   factory :hidden_location do
-    name "MyString"
+    name 'Bar Foo'
     latitude 1.5
     longitude 1.5
+    points 100
+    hint 'Look for FooBar'
   end
 end

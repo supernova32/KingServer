@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe HiddenLocation do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many :users }
+  it { should have_many :checked_locations }
 end

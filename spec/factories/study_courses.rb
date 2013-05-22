@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :study_course do
-    name "MyString"
+    name 'FooBar The Bear'
   end
 end

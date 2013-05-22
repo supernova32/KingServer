@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :room do
-    building 1
-    number 1
+    building_id 1
+    number 123
     claimed false
-    claimed_by "MyString"
+    claimed_by 'MyString'
   end
 end

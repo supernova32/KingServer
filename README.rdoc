@@ -1,7 +1,6 @@
 == King of the HFT (Server)
 
-Codeship Status for {supernova32/KingServer}[https://www.codeship.io/projects/3676] https://www.codeship.io/projects/699d7820-a4fa-0130-bef1-0a95370ae88f/status?branch=master
-
+{<img src="https://www.codeship.io/projects/699d7820-a4fa-0130-bef1-0a95370ae88f/status?branch=master" alt="Build Status" />}[https://www.codeship.io/projects/3676]
 Rails Powered Server to manage the user and rooms database, provide a nice WebUI and forward data to an Android App.
 The purpose of this server is to be the central command for a King of the Hill based game.
 Students of the Hochschule für Technik Stuttgart will use the Android App in conjuction with this server to

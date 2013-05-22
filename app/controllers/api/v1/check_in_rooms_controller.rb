@@ -6,10 +6,6 @@ class Api::V1::CheckInRoomsController < ApplicationController
 
   respond_to :json
 
-  def create
-
-  end
-
   def check_in
     begin
       @room = Room.find_by_id_hash(params[:room_hash])
