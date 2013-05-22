@@ -1,2 +1,23 @@
 .container
   %h5 This is a work in progress
+
+  #myCont
+  :javascript
+    $('#myCont').highcharts({
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Statistics of checked in users'
+      },
+      xAxis: {
+        categories: [#{Room.print_all}]
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Number of users per room'
+        }
+      },
+      series: [#{StudyCourse.print_all}]
+    });

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'digest/sha1'
 require 'rqrcode_png'
 
@@ -18,5 +19,26 @@ class Room < ActiveRecord::Base
 
   def as_json(options)
     super(except: [:qr_code_path, :created_at, :updated_at, :id])
+  end
+
+  def set_claimed_label
+    status = {false => 'important', true => 'success'}
+    status[self.claimed]
+  end
+
+  def claimed_status
+    if self.claimed
+      '✔'
+    else
+      '✘'
+    end
+  end
+
+  def human
+    "'#{self.building_id}/#{self.number}'"
+  end
+
+  def self.print_all
+    Room.all.collect{|r| r.human}.join ', '
   end
 end

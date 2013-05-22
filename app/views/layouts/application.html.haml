@@ -5,6 +5,7 @@
     %link{href: 'https://fonts.googleapis.com/css?family=Droid+Sans|Carrois+Gothic|Lobster', rel: 'stylesheet', type: 'text/css'}
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    %script{src: '/js/highcharts.js'}
     = csrf_meta_tags
   %body
     = render 'layouts/navbar'

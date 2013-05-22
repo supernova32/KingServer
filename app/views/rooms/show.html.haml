@@ -2,7 +2,8 @@
 
 %p
   %b Claimed:
-  = @room.claimed
+  %span{class: "label label-#{@room.set_claimed_label}"}
+    = @room.claimed_status
 %p
   %b Claimed by:
   = @room.claimed_by

@@ -12,7 +12,9 @@
     %tr
       %td= room.building.name unless room.building.nil?
       %td= room.number
-      %td= room.claimed
+      %td
+        %span{class: "label label-#{room.set_claimed_label}"}
+          = room.claimed_status
       %td= room.claimed_by
       %td= link_to 'Show', room, class: 'btn btn-small'
       %td= link_to 'Edit', edit_room_path(room), class: 'btn btn-small btn-warning'
