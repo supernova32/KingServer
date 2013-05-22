@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130504155140) do
     t.string   "claimed_by"
     t.text     "id_hash"
     t.string   "qr_code_path"
+    t.binary   "qr_data"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
   end

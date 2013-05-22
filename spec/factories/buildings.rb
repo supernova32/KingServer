@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :building do
-    name "MyString"
-    latitude 1.5
-    longitude 1.5
+    name 'TestBuilding'
+    latitude 48.98473
+    longitude 9.17263
   end
 end

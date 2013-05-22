@@ -22,6 +22,7 @@ KingServer::Application.routes.draw do
     resources :users
 
     get '/admin' => 'study_courses#admin_home', as: 'admin'
+    get '/rooms/:id/get_image' => 'rooms#get_image', as: 'get_image'
 
     root to: 'study_courses#home'
 

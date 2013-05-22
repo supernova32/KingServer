@@ -7,12 +7,15 @@ class Room < ActiveRecord::Base
   has_many :users, through: :locations
   belongs_to :building
 
-  QR_PATH = '/Users/pato/RubyMineProjects/KingServer/public/qr_codes/'#'/home/www-data/KingApp/shared/qr_codes/'
+  QR_PATH = "#{Rails.root}/tmp/"
 
   before_save do
     self.id_hash = Digest::SHA1.hexdigest("#{self.id}#{self.created_at}#{self.number}#{self.building_id}")
     self.qr_code_path = "#{self.building_id}_#{self.number}.png"
     Qr4r::encode(self.id_hash, QR_PATH+self.qr_code_path, pixel_size: 30)
+    file = File.open(QR_PATH+self.qr_code_path, 'rb')
+    self.qr_data = file.read
+    file.close
   end
 
   def as_json(options)

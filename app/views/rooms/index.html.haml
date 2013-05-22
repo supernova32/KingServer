@@ -10,7 +10,7 @@
 
   - @rooms.each do |room|
     %tr
-      %td= room.building.name
+      %td= room.building.name unless room.building.nil?
       %td= room.number
       %td= room.claimed
       %td= room.claimed_by

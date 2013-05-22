@@ -5,25 +5,26 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'airbrake'
 gem 'newrelic_rpm'
 gem 'dalli'
-gem 'chronic', :git => 'git@github.com:mojombo/chronic.git' #support for ruby 2.0
-gem 'whenever', :require => false
 gem 'metamagic'
 gem 'headliner'
 gem 'qr4r'
+#gem 'rqrcode'
 gem 'geo-distance'
 gem 'geocoder'
+gem 'coveralls', require: false
 
 group :production do
   gem 'mysql2'
+  gem 'pg'
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov'

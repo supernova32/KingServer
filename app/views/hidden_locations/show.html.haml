@@ -1,4 +1,4 @@
-%p#notice= notice
+%legend Showing location
 
 %p
   %b Name:
@@ -10,6 +10,5 @@
   %b Longitude:
   = @hidden_location.longitude
 
-= link_to 'Edit', edit_hidden_location_path(@hidden_location)
-\|
-= link_to 'Back', hidden_locations_path
+= link_to 'Edit', edit_hidden_location_path(@hidden_location), class: 'btn btn-warning'
+= link_to 'Back', hidden_locations_path, class: 'btn btn-inverse'

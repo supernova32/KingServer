@@ -83,4 +83,9 @@ class RoomsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def get_image
+    @photo = Room.find(params[:id])
+    send_data(@photo.qr_data, :type => 'image/png', :filename => "#{@photo.qr_code_path}", :disposition => 'inline')
+  end
 end

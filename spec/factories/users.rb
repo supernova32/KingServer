@@ -2,7 +2,15 @@
 
 FactoryGirl.define do
   factory :user do
-    name "MyString"
-    studies "MyString"
+    name "Test User"
+    study_course { FactoryGirl.create(:study_course) }
+    sequence :email do |n|
+      "person#{n}@localhost.com"
+    end
+    password 'testPassword'
+    password_confirmation 'testPassword'
+    factory :admin do
+      admin true
+    end
   end
 end

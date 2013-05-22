@@ -7,6 +7,7 @@ class CreateRooms < ActiveRecord::Migration
       t.string :claimed_by
       t.text :id_hash
       t.string :qr_code_path
+      t.binary :qr_data
 
       t.timestamps
     end
