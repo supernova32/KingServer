@@ -1,4 +1,5 @@
 require 'digest/sha1'
+require 'RMagick'
 
 class Room < ActiveRecord::Base
   attr_accessible :building_id, :claimed, :claimed_by, :number, :qr_code_path
