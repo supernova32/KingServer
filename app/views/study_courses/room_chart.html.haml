@@ -1,0 +1,21 @@
+%legend Statistics for #{@room.first.extra_human}
+#myCont
+:javascript
+  $('#myCont').highcharts({
+        chart: {
+          type: 'column'
+        },
+        title: {
+          text: 'Statistics of checked in users'
+        },
+        xAxis: {
+          categories: ['Studies']
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: "Number of users in room #{@room.first.extra_human}"
+          }
+        },
+        series: [#{StudyCourse.print_graph(@room.first)}]
+      });

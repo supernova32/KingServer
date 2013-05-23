@@ -3,22 +3,22 @@ class StudyCourse < ActiveRecord::Base
   validates_presence_of :name
   has_many :users, dependent: :destroy
 
-  def series_for_graph
+  def series_for_graph(room)
     result = "{ name: '#{self.name}', data: ["
-    Room.all.each do |r|
-      num = 0
-      r.users.each do |u|
-        if u.study_course == self
-          num += 1
-        end
+    num = 0
+    room.users.each do |u|
+      if u.study_course == self
+        num += 1
       end
-      result += "#{num}, "
     end
-    result.chomp!(', ')
-    result += ']}'
+    result += "#{num}]}"
+  end
+
+  def self.print_graph(room)
+    StudyCourse.all.each.collect { |s| s.series_for_graph(room) }.join ', '
   end
 
   def self.print_all
-    StudyCourse.all.each.collect { |s| s.series_for_graph }.join ', '
+    StudyCourse.all.collect { |s| "'#{s.name}'" }.join ', '
   end
 end

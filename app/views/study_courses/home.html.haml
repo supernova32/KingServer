@@ -3,21 +3,94 @@
 
   #myCont
   :javascript
-    $('#myCont').highcharts({
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: 'Statistics of checked in users'
-      },
-      xAxis: {
-        categories: [#{Room.print_all}]
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Number of users per room'
-        }
-      },
-      series: [#{StudyCourse.print_all}]
-    });
+    function xinspect(obj){
+        var str = "";
+        for(var k in obj)
+            if (obj.hasOwnProperty(k)) //omit this test if you want to see built-in properties
+                str += k + " = " + obj[k] + "\n";
+        alert(str);
+    }
+    var colors = Highcharts.getOptions().colors,
+      categories = [#{Building.print_all}],
+      name = 'Building names',
+      data = [#{Building.print_data}];
+      function setChart(name, categories, data, color) {
+          chart.xAxis[0].setCategories(categories, false);
+          chart.series[0].remove(false);
+          chart.addSeries({
+              name: name,
+              data: data,
+              color: color || 'white'
+          }, false);
+          chart.redraw();
+      }
+
+      var chart = $('#myCont').highcharts({
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'Users checked in per building'
+          },
+          subtitle: {
+              text: 'Click the columns to view the rooms in each building.'
+          },
+          xAxis: {
+              categories: categories
+          },
+          yAxis: {
+              title: {
+                  text: 'Total number of checked in users'
+              }
+          },
+          plotOptions: {
+              column: {
+                  cursor: 'pointer',
+                  point: {
+                      events: {
+                          click: function() {
+                              var drilldown = this.drilldown;
+                              if (drilldown) { // drill down
+                                  setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
+                              } else { // go to room info
+                                  window.location.href = '/en/room_info/'+this.category
+                                  //alert(this.category);
+                                  //setChart(name, categories, data);
+                              }
+                          }
+                      }
+                  },
+                  dataLabels: {
+                      enabled: true,
+                      color: colors[0],
+                      style: {
+                          fontWeight: 'bold'
+                      },
+                      formatter: function() {
+                          return this.y;
+                      }
+                  }
+              }
+          },
+          tooltip: {
+              formatter: function() {
+                  var point = this.point,
+                      s = this.x +':<b>'+ this.y +' users checked in</b><br/>';
+                  if (point.drilldown) {
+                      s += 'Click to view '+ point.category +' rooms';
+                  } else {
+                      s += 'Click to view room statistics';
+                  }
+                  return s;
+              }
+          },
+          series: [{
+              name: name,
+              data: data,
+              color: 'white'
+          }],
+          exporting: {
+              enabled: false
+          }
+      })
+      .highcharts(); // return chart

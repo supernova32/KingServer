@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522145837) do
+ActiveRecord::Schema.define(:version => 20130523101626) do
 
   create_table "buildings", :force => true do |t|
     t.string   "name"
-    t.decimal  "latitude",   :precision => 10, :scale => 7
-    t.decimal  "longitude",  :precision => 10, :scale => 7
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.decimal  "latitude",      :precision => 10, :scale => 7
+    t.decimal  "longitude",     :precision => 10, :scale => 7
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+    t.integer  "checked_users",                                :default => 0
   end
 
   create_table "checked_locations", :force => true do |t|

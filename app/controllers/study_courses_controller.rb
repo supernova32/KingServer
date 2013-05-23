@@ -4,7 +4,17 @@ class StudyCoursesController < ApplicationController
 
   def home
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
+    end
+  end
+
+  def room_chart
+    @room = Room.where(building_id: params[:building_id], number: params[:number])
+    if @room.empty?
+      redirect_to root_url and return
+    end
+    respond_to do |format|
+      format.html
     end
   end
 

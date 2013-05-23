@@ -24,6 +24,7 @@ KingServer::Application.routes.draw do
 
     get '/admin' => 'study_courses#admin_home', as: 'admin'
     get '/rooms/:id/get_image' => 'rooms#get_image', as: 'get_image'
+    get '/room_info/:building_id/:number' => 'study_courses#room_chart'
 
     root to: 'study_courses#home'
 

@@ -38,7 +38,26 @@ class Room < ActiveRecord::Base
     "'#{self.building_id}/#{self.number}'"
   end
 
+  def extra_human
+    "#{self.building_id}/#{self.number}"
+  end
+
   def self.print_all
     Room.all.collect{|r| r.human}.join ', '
+  end
+
+  def print_data
+    result = '['
+    StudyCourse.all.each do |s|
+      num = 0
+      self.users.each do |u|
+        if u.study_course == s
+          num += 1
+        end
+      end
+      result += "#{num}, "
+    end
+    result.chomp!(', ')
+    result += ']'
   end
 end
