@@ -9,6 +9,7 @@ describe Api::V1::UsersController do
 
   context 'POST to get info' do
     before do
+      @building = FactoryGirl.create(:building)
       @room = FactoryGirl.create(:room)
       @user.rooms << @room
       @user.save!

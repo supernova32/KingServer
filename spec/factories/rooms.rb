@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :room do
-    FactoryGirl.create(:building)
     building_id 1
     number '123'
     claimed false
