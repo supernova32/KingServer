@@ -11,7 +11,12 @@
             .logo
               King of the HFT
           .nav-collapse.collapse
-            -#%ul{class:"nav"}
+            %ul{class:'nav'}
+              %li
+                = link_to statistics_path do
+                  %i{class: 'icon-list'}
+                  Game Statistics
+
             -#  %li{class:"dropdown"}
             -#    %a{href:"#", class:"dropdown-toggle", "data-toggle"=>"dropdown"}
             -#      = t('layouts.navbar.products')

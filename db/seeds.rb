@@ -26,8 +26,7 @@ StudyCourse.create [name: 'Wirtschaftspsychologie']
 bau_1 = Building.create [name: 'Bau 1', latitude: 48.7804525, longitude: 9.1729425]
 bau_2 = Building.create [name: 'Bau 2', latitude: 48.7798125, longitude: 9.1734375]
 bau_3 = Building.create [name: 'Bau 3', latitude: 48.7802450, longitude: 9.1722150]
-
-bau_4 = Building.create [name: 'My Home', latitude: 48.7663727, longitude: 9.1780033]
+bau_4 = Building.create [name: 'Bau 4', latitude: 48.7663727, longitude: 9.1780033]
 
 raum1222 = Room.create [number: "222", building_id: 1]
 raum1020 = Room.create [number: "020", building_id: 1]

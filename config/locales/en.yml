@@ -18,6 +18,8 @@ en:
     register: Register
     update: Update
     save: Save
+    edit_user1: "(leave empty if you don't wish to change your password)"
+    edit_user2: "(to confirm your identity)"
   layouts:
     navbar:
       user_details: Edit Profile

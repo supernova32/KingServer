@@ -8,8 +8,8 @@ class Ability
       can :manage, :all
     else
       can :show, [StudyCourse, Room, Building]
-      can :home, StudyCourse
-      #can :manage, User, id: user.id
+      can [:home, :statistics, :room_chart], StudyCourse
+      can [:show, :edit, :update], User, id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

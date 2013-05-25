@@ -2,6 +2,7 @@ class StudyCourse < ActiveRecord::Base
   attr_accessible :name
   validates_presence_of :name
   has_many :users, dependent: :destroy
+  scope :ordered, order('name asc')
 
   def series_for_graph(room)
     result = "{ name: '#{self.name}', data: ["
@@ -15,10 +16,10 @@ class StudyCourse < ActiveRecord::Base
   end
 
   def self.print_graph(room)
-    StudyCourse.all.each.collect { |s| s.series_for_graph(room) }.join ', '
+    StudyCourse.ordered.each.collect { |s| s.series_for_graph(room) }.join ', '
   end
 
   def self.print_all
-    StudyCourse.all.collect { |s| "'#{s.name}'" }.join ', '
+    StudyCourse.ordered.collect { |s| "'#{s.name}'" }.join ', '
   end
 end

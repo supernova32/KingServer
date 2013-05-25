@@ -1,10 +1,72 @@
+%legend Welcome back #{@user.name}
 
 %p
-  %b Name:
-  = @user.name
-%p
-  %b Studies:
+  %b You study:
   = @user.study_course.name unless @user.study_course.nil?
 
-= link_to 'Edit', edit_user_path(@user), class: 'btn'
-= link_to 'Back', users_path, class: 'btn btn-inverse'
+#myCont
+:javascript
+  $('#myCont').highcharts({
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: "Rooms where you've checked in"
+    },
+    scrollbar: {
+      enabled: true
+    },
+    xAxis: {
+      categories: [#{print_user_rooms @user.rooms.by_building}],
+      max: 20
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Rooms' statistics"
+      }
+    },
+    plotOptions: {
+        column: {
+          cursor: 'pointer',
+            point: {
+              events: {
+                click: function() {
+                    window.location.href = '/en/room_info/'+this.category
+                }
+              }
+            },
+          dataLabels: {
+              enabled: true,
+              //color: colors[0],
+              style: {
+                  fontWeight: 'bold'
+              },
+              formatter: function() {
+                  return this.y;
+              }
+          }
+        }
+    },
+    tooltip: {
+      formatter: function() {
+        var point = this.point,
+          s = this.x +':<b>'+ this.y +' users checked in</b><br/>';
+        if (point.drilldown) {
+          s += 'Click to view '+ point.category +' rooms';
+        } else {
+          s += 'Click to view room statistics';
+        }
+        return s;
+      }
+    },
+    series: [{
+      name: "#{@user.name}",
+      data: [#{parse_rooms(@user.rooms.by_building.ordered)}]
+
+    }]
+  });
+
+- if can? :manage, User
+  = link_to 'Edit', edit_user_path(@user), class: 'btn'
+  = link_to 'Back', users_path, class: 'btn btn-inverse'

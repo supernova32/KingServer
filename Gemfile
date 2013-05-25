@@ -20,6 +20,7 @@ gem 'coveralls', require: false
 group :production do
   gem 'mysql2'
   gem 'pg'
+  gem 'unicorn'
 end
 
 group :development, :test do

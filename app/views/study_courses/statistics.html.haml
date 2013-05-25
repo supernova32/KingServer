@@ -1,0 +1,128 @@
+%legend Current Game Statistics
+.container
+  #timeContainer
+    .span4
+    .span4
+      %h5{style: 'text-align: center;'} Time left in current game
+      %ul#timer
+    .span4
+  :javascript
+    jQuery(document).ready(function($) {
+        CreateTimer("timer", {
+            year: 2013,
+            month: 6,
+            day: 1
+        });
+    });
+
+  #myCont
+  :javascript
+    function xinspect(obj){
+        var str = "";
+        for(var k in obj)
+            if (obj.hasOwnProperty(k)) //omit this test if you want to see built-in properties
+                str += k + " = " + obj[k] + "\n";
+        alert(str);
+    }
+    var colors = Highcharts.getOptions().colors,
+      categories = [#{Building.print_all}],
+      name = 'Building names',
+      data = [#{Building.print_data}];
+      function setChart(name, categories, data, color, s_title, s_subtitle) {
+          chart.xAxis[0].update({max: 20})
+          chart.xAxis[0].setCategories(categories, false);
+          chart.setTitle({text: s_title}, {text: s_subtitle});
+          chart.series[0].remove(false);
+          chart.addSeries({
+              name: name,
+              data: data,
+              color: color || 'white'
+          }, false);
+          chart.redraw();
+      }
+
+      var chart = $('#myCont').highcharts({
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'Number of check-ins per building'
+          },
+          subtitle: {
+              text: 'Click the columns to view the rooms in each building.'
+          },
+          xAxis: {
+              categories: categories
+          },
+          scrollbar: {
+              enabled: true
+          },
+          yAxis: {
+              title: {
+                  text: 'Total number of check-ins'
+              }
+          },
+          plotOptions: {
+              column: {
+                  cursor: 'pointer',
+                  point: {
+                      events: {
+                          click: function() {
+                              var drilldown = this.drilldown;
+                              if (drilldown) { // drill down
+                                  setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color,
+                                           'Users checked in per building', 'Click the columns to view each room');
+                              } else { // go to room info
+                                  window.location.href = '/en/room_info/'+this.category
+                                  //alert(this.category);
+                                  //setChart(name, categories, data);
+                              }
+                          }
+                      }
+                  },
+                  dataLabels: {
+                      enabled: true,
+                      color: colors[0],
+                      style: {
+                          fontWeight: 'bold'
+                      },
+                      formatter: function() {
+                          return this.y;
+                      }
+                  }
+              }
+          },
+          tooltip: {
+              formatter: function() {
+                  var point = this.point,
+                      s = this.x +':<b>'+ this.y +' users checked in</b><br/>';
+                  if (point.drilldown) {
+                      s += 'Click to view '+ point.category +' rooms';
+                  } else {
+                      s += 'Click to view room statistics';
+                  }
+                  return s;
+              }
+          },
+          series: [{
+              name: name,
+              data: data,
+              color: 'white'
+          }],
+          exporting: {
+              //enabled: true,
+              buttons: {
+                  'myButton': {
+                      _id: 'myButton',
+                      symbol: 'diamond',
+                      x: 2,
+                      symbolFill: '#B5C9DF',
+                      hoverSymbolFill: '#779ABF',
+                      onclick: function() {
+                          alert('click!')
+                      }
+                  }
+              }
+          }
+      })
+      .highcharts(); // return chart

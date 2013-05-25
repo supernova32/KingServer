@@ -8,6 +8,8 @@ class Room < ActiveRecord::Base
   has_many :locations, dependent: :destroy
   has_many :users, through: :locations
   belongs_to :building
+  scope :ordered, order('number asc')
+  scope :by_building, order('building_id asc')
 
   before_save do
     self.id_hash = Digest::SHA1.hexdigest("#{self.created_at}#{self.number}#{self.building_id}")
@@ -43,7 +45,7 @@ class Room < ActiveRecord::Base
   end
 
   def self.print_all
-    Room.all.collect{|r| r.human}.join ', '
+    Room.ordered.collect{|r| r.human}.join ', '
   end
 
   def print_data

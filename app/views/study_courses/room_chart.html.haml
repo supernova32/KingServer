@@ -17,5 +17,19 @@
             text: "Number of users in room #{@room.first.extra_human}"
           }
         },
+        plotOptions: {
+            column: {
+              dataLabels: {
+                  enabled: true,
+                  //color: colors[0],
+                  style: {
+                      fontWeight: 'bold'
+                  },
+                  formatter: function() {
+                      return this.y;
+                  }
+              }
+            }
+        },
         series: [#{StudyCourse.print_graph(@room.first)}]
       });

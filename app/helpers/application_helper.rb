@@ -10,4 +10,8 @@ module ApplicationHelper
     end
     result.chomp!(', ')
   end
+
+  def print_user_rooms(rooms)
+    rooms.ordered.collect{|r| r.human}.join ', '
+  end
 end
