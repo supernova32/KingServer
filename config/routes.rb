@@ -1,4 +1,9 @@
 KingServer::Application.routes.draw do
+  
+  constraint = lambda { |request| request.env['warden'].authenticate? and request.env['warden'].user.admin? }
+  constraints constraint do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   namespace :api do
     namespace :v1  do

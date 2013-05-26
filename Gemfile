@@ -7,6 +7,8 @@ gem 'rails'
 
 gem 'sidekiq'
 gem 'sidekiq-failures'
+gem 'sinatra', require: false
+gem 'slim'
 gem 'airbrake'
 gem 'newrelic_rpm'
 gem 'dalli'

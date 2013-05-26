@@ -294,6 +294,8 @@ DEPENDENCIES
   sidekiq
   sidekiq-failures
   simplecov
+  sinatra
+  slim
   sqlite3
   state_machine
   uglifier (>= 1.0.3)
