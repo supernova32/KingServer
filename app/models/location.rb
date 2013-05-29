@@ -4,7 +4,8 @@ class Location < ActiveRecord::Base
   belongs_to :room
 
   after_save do
-    self.room.building.checked_users += self.room.users.size
+    self.room.building.checked_users += 1
     self.room.building.save!
+    ClaimsWorker.perform_async(self.room_id, self.user_id)
   end
 end

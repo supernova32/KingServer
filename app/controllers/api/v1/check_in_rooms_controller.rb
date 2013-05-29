@@ -10,8 +10,12 @@ class Api::V1::CheckInRoomsController < ApplicationController
     begin
       @room = Room.find_by_id_hash(params[:room_hash])
       unless @room.nil?
+        if @room.claimed?
+          render status: 401, json: { message: 'Claimed' }
+          return
+        end
         @distance = GeoDistance::Haversine.geo_distance(params[:latitude], params[:longitude], @room.building.latitude.to_f, @room.building.longitude.to_f).to_meters
-        if @distance < 100
+        if @distance < 800
           if current_user.rooms.include? @room
             render status: 401, json: { message: 'Duplicate' }
             return

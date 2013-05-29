@@ -1,1 +1,34 @@
 %legend A different kind of geo-location Game
+
+.span12
+  .span4.offset1
+    %a{:href => "linkToApp"}
+      %img{:alt => "", :height => "150", :src => "img/download_app.png"}/
+  .span4.offset1
+    %br/
+    %h1 King of HFT
+    %h3 Get the Game
+    %p
+      Get the Android App now. As download
+      %a{:href => "linkToApp"} here
+      in the Play Store or as direct download via QR-Code.
+  .span4.offset1
+    %br/
+    %a{:href => "linkToInstuctions"}
+    %h1 Spiel Anleitung
+    %img{:alt => "", :height => "150", :src => "img/play.jpg"}/
+
+    %h3 Simple game play
+    %p
+      Big pleasure. Join the community and play with friends and other students. How to play? Simple! Just follow
+      %a{:href => "linkToInstuctions"}
+        the instructions
+  .span4.offset1
+    %br/
+    %h1
+      = link_to 'Scoreboard', statistics_path
+    %img{:alt => "", :height => "150", :src => "img/logo.png"}/
+    %h3 The best of the best
+    %p
+      just take a look.
+      Show me!
