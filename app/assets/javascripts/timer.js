@@ -3,9 +3,6 @@ $(document).ready(function () {
     $('#statsTab').find('a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
-        var server = $(this).prop('href').split('#');
-        var tab = $('#'+server[1]);
-        tab.load('/en/'+server[1]+'_load #filling');
     });
 });
 var Timer,
