@@ -20,7 +20,7 @@ class Room < ActiveRecord::Base
   end
 
   def as_json(options)
-    super(except: [:qr_code_path, :created_at, :updated_at, :id, :qr_data, :id_hash])
+    super(except: [:qr_code_path, :created_at, :updated_at, :id, :qr_data])
   end
 
   def set_claimed_label
