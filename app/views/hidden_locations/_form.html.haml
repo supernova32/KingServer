@@ -7,14 +7,41 @@
           - @hidden_location.errors.full_messages.each do |msg|
             %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :latitude
-    = f.text_field :latitude
-  .field
-    = f.label :longitude
-    = f.text_field :longitude
-  .actions
-    = f.submit 'Save'
+  .control-group
+    = f.label :name, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-user"}
+        = f.text_field :name
+  .control-group
+    = f.label :latitude, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-user"}
+        = f.text_field :latitude
+  .control-group
+    = f.label :longitude, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-user"}
+        = f.text_field :longitude
+  .control-group
+    = f.label :hint, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-user"}
+        = f.text_field :hint
+  .control-group
+    = f.label :points, class: "control-label"
+    .controls
+      .input-prepend
+        %span{class: "add-on"}
+          %i{class: "icon-user"}
+        = f.text_field :points
+  .control-group
+    .controls
+      = f.submit t("global.save"), class: "btn btn-success"
