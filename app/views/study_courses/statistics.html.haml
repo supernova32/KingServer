@@ -17,160 +17,170 @@
 
 %ul.nav.nav-tabs#statsTab
   %li.active
-    %a{href: '#sc'} Most active Study Courses
-  %li
     %a{href: '#upb'} Users per building
+  %li
+    %a{href: '#sc'} Most active Study Courses
   %li
     %a{href: '#wn'} Who's winning?
 
 .tab-content
-  .tab-pane.active#sc
-    #myCont2
-  .tab-pane#upb
+  .tab-pane.active#upb
     #myCont
+  .tab-pane#sc
+    #myCont2
   .tab-pane#wn
     %p Coming soon!
 
-  :javascript
-    $('#myCont2').highcharts({
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: 'Most active study courses'
-      },
-      xAxis: {
-        categories: ['Study Courses']
-      },
-      yAxis: {
-        min: 0,
+:javascript
+  function xinspect(obj){
+      var str = "";
+      for(var k in obj)
+          if (obj.hasOwnProperty(k)) //omit this test if you want to see built-in properties
+              str += k + " = " + obj[k] + "\n";
+      alert(str);
+  }
+  var colors = Highcharts.getOptions().colors,
+    categories = [#{Building.print_all}],
+    name = 'Building names',
+    data = [#{Building.print_data}];
+    function setChart(name, categories, data, color, s_title, s_subtitle) {
+        chart.xAxis[0].update({max: 20})
+        chart.xAxis[0].setCategories(categories, false);
+        chart.setTitle({text: s_title}, {text: s_subtitle});
+        chart.series[0].remove(false);
+        chart.addSeries({
+            name: name,
+            data: data,
+            color: color || 'white'
+        }, false);
+        chart.redraw();
+    }
+
+    var chart = $('#myCont').highcharts({
+        chart: {
+            type: 'column'
+        },
         title: {
-          text: 'Number of check-ins per Study Course'
-        }
-      },
-      plotOptions: {
-          column: {
-            dataLabels: {
-                enabled: true,
-                //color: colors[0],
-                style: {
-                    fontWeight: 'bold'
+            text: 'Number of check-ins per building'
+        },
+        subtitle: {
+            text: 'Click the columns to view the rooms in each building.'
+        },
+        xAxis: {
+            categories: categories
+        },
+        scrollbar: {
+            enabled: true
+        },
+        yAxis: {
+            title: {
+                text: 'Total number of check-ins'
+            }
+        },
+        plotOptions: {
+            column: {
+                cursor: 'pointer',
+                point: {
+                  events: {
+                    click: function() {
+                      var drilldown = this.drilldown;
+                      if (drilldown) { // drill down
+                          setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color,
+                                   'Users checked in per building', 'Click the columns to view each room');
+                      } else { // go to room info
+                          window.location.href = '/en/room_info/'+this.category
+                          //alert(this.category);
+                          //setChart(name, categories, data);
+                      }
+                    }
+                  }
                 },
-                formatter: function() {
-                    return this.y;
+                dataLabels: {
+                    enabled: true,
+                    color: colors[0],
+                    style: {
+                        fontWeight: 'bold'
+                    },
+                    formatter: function() {
+                        return this.y;
+                    }
                 }
             }
-          }
-      },
-      series: [#{StudyCourse.print_sc_graph}]
-    });
-
-    function xinspect(obj){
-        var str = "";
-        for(var k in obj)
-            if (obj.hasOwnProperty(k)) //omit this test if you want to see built-in properties
-                str += k + " = " + obj[k] + "\n";
-        alert(str);
-    }
-    var colors = Highcharts.getOptions().colors,
-      categories = [#{Building.print_all}],
-      name = 'Building names',
-      data = [#{Building.print_data}];
-      function setChart(name, categories, data, color, s_title, s_subtitle) {
-          chart.xAxis[0].update({max: 20})
-          chart.xAxis[0].setCategories(categories, false);
-          chart.setTitle({text: s_title}, {text: s_subtitle});
-          chart.series[0].remove(false);
-          chart.addSeries({
-              name: name,
-              data: data,
-              color: color || 'white'
-          }, false);
-          chart.redraw();
-      }
-
-      var chart = $('#myCont').highcharts({
-          chart: {
-              type: 'column'
-          },
-          title: {
-              text: 'Number of check-ins per building'
-          },
-          subtitle: {
-              text: 'Click the columns to view the rooms in each building.'
-          },
-          xAxis: {
-              categories: categories
-          },
-          scrollbar: {
-              enabled: true
-          },
-          yAxis: {
-              title: {
-                  text: 'Total number of check-ins'
-              }
-          },
-          plotOptions: {
-              column: {
-                  cursor: 'pointer',
-                  point: {
-                      events: {
-                          click: function() {
-                              var drilldown = this.drilldown;
-                              if (drilldown) { // drill down
-                                  setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color,
-                                           'Users checked in per building', 'Click the columns to view each room');
-                              } else { // go to room info
-                                  window.location.href = '/en/room_info/'+this.category
-                                  //alert(this.category);
-                                  //setChart(name, categories, data);
-                              }
+        },
+        tooltip: {
+            formatter: function() {
+                var point = this.point,
+                    s = this.x +':<b>'+ this.y +' users checked in</b><br/>';
+                if (point.drilldown) {
+                    s += 'Click to view '+ point.category +' rooms';
+                } else {
+                    s += 'Click to view room statistics';
+                }
+                return s;
+            }
+        },
+        series: [{
+            name: name,
+            data: data,
+            color: 'white'
+        }],
+        exporting: {
+            //enabled: true,
+            buttons: {
+                'myButton': {
+                    _id: 'myButton',
+                    symbol: 'diamond',
+                    x: 2,
+                    symbolFill: '#B5C9DF',
+                    hoverSymbolFill: '#779ABF',
+                    onclick: function() {
+                        alert('click!')
+                    }
+                }
+            }
+        }
+    })
+    .highcharts(); // return chart
+    jQuery(document).ready(function($) {
+       $('#statsTab').find('a').click(function (e) {
+          e.preventDefault();
+          $(this).tab('show');
+          var server = $(this).prop('href').split('#');
+          if (server[1] == 'sc') {
+            $('#myCont2').highcharts({
+                chart: {
+                  type: 'column'
+                },
+                title: {
+                  text: 'Most active study courses'
+                },
+                xAxis: {
+                  categories: ['Study Courses']
+                },
+                yAxis: {
+                  min: 0,
+                  title: {
+                    text: 'Number of check-ins per Study Course'
+                  }
+                },
+                plotOptions: {
+                    column: {
+                      dataLabels: {
+                          enabled: true,
+                          //color: colors[0],
+                          style: {
+                              fontWeight: 'bold'
+                          },
+                          formatter: function() {
+                              return this.y;
                           }
                       }
-                  },
-                  dataLabels: {
-                      enabled: true,
-                      color: colors[0],
-                      style: {
-                          fontWeight: 'bold'
-                      },
-                      formatter: function() {
-                          return this.y;
-                      }
-                  }
-              }
-          },
-          tooltip: {
-              formatter: function() {
-                  var point = this.point,
-                      s = this.x +':<b>'+ this.y +' users checked in</b><br/>';
-                  if (point.drilldown) {
-                      s += 'Click to view '+ point.category +' rooms';
-                  } else {
-                      s += 'Click to view room statistics';
-                  }
-                  return s;
-              }
-          },
-          series: [{
-              name: name,
-              data: data,
-              color: 'white'
-          }],
-          exporting: {
-              //enabled: true,
-              buttons: {
-                  'myButton': {
-                      _id: 'myButton',
-                      symbol: 'diamond',
-                      x: 2,
-                      symbolFill: '#B5C9DF',
-                      hoverSymbolFill: '#779ABF',
-                      onclick: function() {
-                          alert('click!')
-                      }
-                  }
-              }
+                    }
+                },
+                series: [#{StudyCourse.print_sc_graph}]
+              });
+          } else if (server[1] == 'upb') {
+            chart.redraw();
           }
-      });
-      //.highcharts(); // return chart
+       });
+    });

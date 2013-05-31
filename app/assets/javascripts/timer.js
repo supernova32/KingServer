@@ -1,9 +1,6 @@
 $(document).ready(function () {
     $('.notice').delay(5000).fadeOut();
-    $('#statsTab').find('a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
+
 });
 var Timer,
     TotalSeconds;
@@ -21,7 +18,7 @@ function CreateTimer(TimerID, Time) {
     Timer = document.getElementById(TimerID);
     TotalSeconds = Math.floor(Time / 1000);
 
-    UpdateTimer()
+    UpdateTimer();
     window.setTimeout('Tick()', 1000);
 }
 
@@ -32,7 +29,7 @@ function Tick() {
     }
 
     TotalSeconds -= 1;
-    UpdateTimer()
+    UpdateTimer();
     window.setTimeout("Tick()", 1000);
 }
 

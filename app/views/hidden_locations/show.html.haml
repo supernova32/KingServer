@@ -9,6 +9,12 @@
 %p
   %b Longitude:
   = @hidden_location.longitude
+%p
+  %b Hint:
+  = @hidden_location.hint
+%p
+  %b Longitude:
+  = @hidden_location.points
 
 = link_to 'Edit', edit_hidden_location_path(@hidden_location), class: 'btn btn-warning'
 = link_to 'Back', hidden_locations_path, class: 'btn btn-inverse'

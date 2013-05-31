@@ -20,4 +20,40 @@ class Api::V1::LocationsController < ApplicationController
 
   end
 
+  def get_close_locations
+    @locations = HiddenLocation.near([params[:latitude], params[:longitude]], 0.5, units: :km)
+    render status: 200, json: { markers: @locations }
+  end
+
+  def get_hidden_locations
+    @locations = HiddenLocation.all
+    render status: 200, json: @locations
+  end
+
+  def get_location_info
+    begin
+      room = HiddenLocation.find(params[:location_id])
+      unless room.nil?
+        studies = []
+        users = room.users
+        users.each do |user|
+          studies << user.studies
+        end
+
+        stats = Hash.new(0)
+        studies.each do |st|
+          stats[st] += 1
+        end
+
+        render status: 200, json: { users: users.size, stats: stats }
+        return
+      end
+      render status: 500, json: { message: 'Record not found' }
+
+    rescue ActiveRecord::RecordNotFound
+      render status: 500, json: { message: 'Record not found' }
+      return
+    end
+  end
+
 end

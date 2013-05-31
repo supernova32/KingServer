@@ -1,23 +1,24 @@
-%h1 Listing buildings
+%legend Buildings
 
-%table
-  %tr
-    %th Name
-    %th Latitude
-    %th Longitude
-    %th
-    %th
-    %th
-
-  - @buildings.each do |building|
+%table{class: 'table table-hover'}
+  %thead
     %tr
-      %td= building.name
-      %td= building.latitude
-      %td= building.longitude
-      %td= link_to 'Show', building
-      %td= link_to 'Edit', edit_building_path(building)
-      %td= link_to 'Destroy', building, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th Name
+      %th Latitude
+      %th Longitude
+      %th
+      %th
+      %th
+
+    - @buildings.each do |building|
+      %tr
+        %td= building.name
+        %td= building.latitude
+        %td= building.longitude
+        %td= link_to 'Show', building, class: 'btn btn-small'
+        %td= link_to 'Edit', edit_building_path(building), class: 'btn btn-warning btn-small'
+        %td= link_to 'Destroy', building, class: 'btn btn-danger btn-small', :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Building', new_building_path
+= link_to 'New Building', new_building_path, class: 'btn btn-inverse'
