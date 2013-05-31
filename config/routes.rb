@@ -11,7 +11,7 @@ KingServer::Application.routes.draw do
       resources :locations, only: [:create]
       post '/check_in' => 'check_ins#check_in', format: :json
       post '/user_info' => 'users#my_info', format: :json
-      post '/room_info' => 'room#get_room_info', format: :json
+      post '/room_info' => 'rooms#get_room_info', format: :json
       post '/location_info' => 'locations#get_location_info', format: :json
       post '/hidden_check' => 'check_ins#hidden_check_in', format: :json
       post '/hidden_locations' => 'locations#get_close_locations', format: :json
