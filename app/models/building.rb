@@ -5,7 +5,7 @@ class Building < ActiveRecord::Base
 
   def data_for_graph
     result = "{ y: #{self.checked_users}, color: colors[#{self.id - 1}], drilldown: { name: '#{self.name}',
-                categories: [#{self.rooms.ordered.collect{|r| r.human}.join ', '}], data: [#{parse_rooms(self.rooms)}],
+                categories: [#{self.rooms.ordered.collect{|r| r.human}.join ', '}], data: [#{parse_rooms(self.rooms.ordered)}],
                 color: colors[#{self.id - 1}]} }"
   end
 
