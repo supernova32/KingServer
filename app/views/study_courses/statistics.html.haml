@@ -20,16 +20,16 @@
     %a{href: '#upb'} Users per building
   %li
     %a{href: '#sc'} Most active Study Courses
-  %li
-    %a{href: '#wn'} Who's winning?
+  -#%li
+  -#  %a{href: '#wn'} Who's winning?
 
 .tab-content
   .tab-pane.active#upb
     #myCont
   .tab-pane#sc
     #myCont2
-  .tab-pane#wn
-    %p Coming soon!
+  -#.tab-pane#wn
+  -#  #pieChart
 
 :javascript
   function xinspect(obj){

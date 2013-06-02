@@ -40,7 +40,7 @@ class Api::V1::CheckInsController < ApplicationController
   end
 
   def hidden_check_in
-    @locations = HiddenLocation.near([params[:latitude], params[:longitude]], 0.015, units: :km)
+    @locations = HiddenLocation.near([params[:latitude], params[:longitude]], 0.025, units: :km)
     if @locations.size == 1
       if current_user.rooms.include? @locations
         render status: 401, json: { message: 'Duplicate' }

@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('.notice').delay(5000).fadeOut();
-
 });
 var Timer,
     TotalSeconds;

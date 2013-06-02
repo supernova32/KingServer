@@ -1,7 +1,7 @@
 class Building < ActiveRecord::Base
   include ApplicationHelper
   attr_accessible :latitude, :longitude, :name
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
 
   def data_for_graph
     result = "{ y: #{self.checked_users}, color: colors[#{self.id - 1}], drilldown: { name: '#{self.name}',
